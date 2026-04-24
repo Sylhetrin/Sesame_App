@@ -1,7 +1,7 @@
 {
   "name": "Sesame Access",
   "short_name": "Sesame",
-  "description": "Sesame Access - oficjalna strona internetowa",
+  "description": "Sesame Access - official website",
   "start_url": "https://www.sesameaccess.com",
   "scope": "https://www.sesameaccess.com",
   "display": "standalone",
@@ -59,6 +59,6 @@
     }
   ],
   "categories": ["utilities"],
-  "lang": "pl",
+  "lang": "en",
   "dir": "ltr"
 }

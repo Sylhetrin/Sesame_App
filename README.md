@@ -7,7 +7,7 @@ Progressive Web App installer for Sesame Access (www.sesameaccess.com)
 - **Main Background:** `#f3f0e1` (cream beige)
 - **Secondary Color:** `#024a25` (dark green)
 - **Logo:** `logo.png` - Web app logo
-- **QR Code:** `Screenshot 2026-04-24 122505.png` - QR code for mobile access
+- **QR Code:** `qr-code.png` - QR code for mobile access (points to GitHub Pages)
 
 ## 📱 Features
 
@@ -16,6 +16,7 @@ Progressive Web App installer for Sesame Access (www.sesameaccess.com)
 - QR code for easy mobile access
 - Offline support via Service Worker
 - Responsive design for all screen sizes
+- **Language:** English (US/UK)
 
 ## 🚀 Deployment to GitHub Pages
 
