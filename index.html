@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesame Access - Instalacja Aplikacji</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#024a25">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Sesame">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <!-- iOS Safari: When opened from home screen, redirect to sesameaccess.com -->
+    <script>
+        if (window.navigator.standalone === true) {
+            // App is running from home screen - redirect to actual website
+            window.location.href = 'https://www.sesameaccess.com';
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f3f0e1 0%, #e8e4d0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: #024a25;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 25px;
+        }
+        
+        h1 {
+            color: #1a1a1a;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .install-button {
+            background: #024a25;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 25px;
+            transition: transform 0.2s, background 0.2s;
+        }
+        
+        .install-button:hover {
+            background: #013d1f;
+            transform: scale(1.02);
+        }
+        
+        .install-button:active {
+            transform: scale(0.98);
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        .instructions h2 {
+            color: #1a1a1a;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            background: #024a25;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            width: 40px;
+            text-align: center;
+        }
+        
+        .step-text {
+            line-height: 1.4;
+        }
+        
+        .step-text strong {
+            color: #024a25;
+            font-weight: 600;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 14px;
+            color: #92400e;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="Sesame Logo">
+        </div>
+        
+        <h1>Sesame Access</h1>
+        <p class="subtitle">Zainstaluj aplikację na swoim telefonie</p>
+        
+        <div id="successMessage" class="success-message hidden">
+            ✓ Aplikacja została zainstalowana!<br>
+            <small>Za chwilę otworzy się strona sesameaccess.com</small>
+        </div>
+        
+        <!-- Android Install Button -->
+        <button id="installButton" class="install-button hidden">
+            📲 Zainstaluj aplikację
+        </button>
+        
+        <!-- iOS Instructions -->
+        <div id="iosInstructions" class="instructions hidden">
+            <h2>🍎 iPhone / iPad</h2>
+            <div class="step">
+                <span class="step-number">1</span>
+                <span class="step-icon">📤</span>
+                <span class="step-text">Stuknij przycisk <strong>Udostępnij</strong> na dole ekranu</span>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <span class="step-icon">➕</span>
+                <span class="step-text">Zjedź w dół i wybierz <strong>"Do ekranu początk."</strong></span>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-icon">✓</span>
+                <span class="step-text">Stuknij <strong>"Dodaj"</strong> w prawym górnym rogu</span>
+            </div>
+            <div class="note">
+                <strong>Ważne:</strong> Po zainstalowaniu, aplikacja automatycznie otworzy stronę <strong>www.sesameaccess.com</strong>
+            </div>
+        </div>
+        
+        <!-- Generic Instructions (fallback) -->
+        <div id="genericInstructions" class="instructions">
+            <h2>📱 Jak zainstalować?</h2>
+            <div class="step">
+                <span class="step-number">1</span>
+                <span class="step-text">Otwórz tę stronę na telefonie</span>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <span class="step-text">Postępuj zgodnie z instrukcjami dla swojego urządzenia</span>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-text">Aplikacja Sesame pojawi się na ekranie głównym</span>
+            </div>
+            <div class="note">
+                <strong>Ważne:</strong> Po zainstalowaniu, aplikacja automatycznie otworzy stronę <strong>www.sesameaccess.com</strong>
+            </div>
+        </div>
+        
+        <!-- QR Code Section -->
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #f3f0e1;">
+            <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Zeskanuj kod QR, aby otworzyć na telefonie:</p>
+            <img src="qr-code.png" alt="QR Code" style="width: 200px; height: 200px; object-fit: contain;">
+        </div>
+    </div>
+
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log('Service Worker registered'));
+        }
+
+        // Detect device and show appropriate instructions
+        const installButton = document.getElementById('installButton');
+        const iosInstructions = document.getElementById('iosInstructions');
+        const genericInstructions = document.getElementById('genericInstructions');
+        const successMessage = document.getElementById('successMessage');
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isAndroid = /Android/.test(navigator.userAgent);
+
+        let deferredPrompt = null;
+
+        // Handle beforeinstallprompt for Android
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            if (isAndroid) {
+                installButton.classList.remove('hidden');
+                genericInstructions.classList.add('hidden');
+            }
+        });
+
+        // Install button click handler
+        installButton.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                installButton.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                
+                // Redirect to sesameaccess.com after short delay
+                setTimeout(() => {
+                    window.location.href = 'https://www.sesameaccess.com';
+                }, 2000);
+            }
+            
+            deferredPrompt = null;
+        });
+
+        // Show iOS instructions for Apple devices
+        if (isIOS) {
+            iosInstructions.classList.remove('hidden');
+            genericInstructions.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
